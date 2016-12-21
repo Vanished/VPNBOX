@@ -25,6 +25,8 @@ default password is `raspberry`
 
 `sudo su -` to get into root
 
+The following will update the pi, enable a .local address, and install Apache & OpenVP. It will also download the VanishedVPN OpenVPn config and copy to `/etc/openvpn` (we'll need this later). 
+
 ```
 apt-get update && apt-get upgrade -y && \
 apt-get install avahi-daemon -y && \
