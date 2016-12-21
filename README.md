@@ -29,8 +29,7 @@ The following will update the pi, enable a .local address, and install Apache & 
 
 ```
 apt-get update && apt-get upgrade -y && \
-apt-get install avahi-daemon -y && \
-apt-get install apache2 -y &&\
+apt-get install curl -y &&\
 apt-get install openvpn -y &&\
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
 ```
