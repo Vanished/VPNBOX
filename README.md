@@ -1,4 +1,4 @@
-# VPN In a BOX
+# VPN in a BOX
 This project will enable you to configure a Raspberry Pi (or similar) to run OpenVPN on your network. 
 
 This solution will enable you to connect devices such as ATV, PS4, Xbox, Smart TV etc (which do not support VPN) to the RPI just by changing the DNS.
@@ -22,6 +22,8 @@ You will need :
 `ssh pi@<ip address of your pi>`
 
 default password is `raspberry`
+
+`sudo su -` to get into root
 
 ##IP Addressing
 
