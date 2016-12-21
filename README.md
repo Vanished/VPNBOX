@@ -67,20 +67,10 @@ Install the OpenVPN client:
 ```
 sudo apt-get install openvpn
 ```
-Download and uncompress the PIA OpenVPN profiles:
+Copy the VanishedVPN OpenVPN config file (USA by default):
 ```
-wget https://www.privateinternetaccess.com/openvpn/openvpn.zip
-sudo apt-get install unzip
-unzip openvpn.zip -d openvpn
+$ wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
 ```
-
-Copy the PIA OpenVPN certificates and profile to the OpenVPN client:
-```
-sudo cp openvpn/ca.rsa.2048.crt openvpn/crl.rsa.2048.pem /etc/openvpn/
-sudo cp openvpn/Japan.ovpn /etc/openvpn/Japan.conf
-```
-You can use a diffrent VPN endpoint if you like. Note the extension change from ovpn to conf.
-
 Create `/etc/openvpn/login` containing only your username and password, one per line, for example:
 
 `nano /etc/openvpn/login`
