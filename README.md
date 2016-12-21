@@ -25,6 +25,14 @@ default password is `raspberry`
 
 `sudo su -` to get into root
 
+```
+apt-get update && apt-get upgrade -y && \
+apt-get install avahi-daemon -y && \
+apt-get install apache2 -y &&\
+apt-get install openvpn -y &&\
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
+```
+
 ##IP Addressing
 
 My home network is setup as follows:
@@ -36,7 +44,7 @@ If your network range is different, that's fine, use your network range instead 
 
 Find a free IP address (check your router), and assign a static IP to the Pi
 
-I'm going to give my Raspberry Pi a static IP address of `192.168.1.2` by configuring `/etc/network/interfaces` like so:
+I'm going to give my Raspberry Pi a static IP address of `192.168.1.18` by configuring `/etc/network/interfaces` like so:
 
 `nano /etc/network/interfaces`
 
@@ -47,7 +55,7 @@ iface lo inet loopback
 auto eth0
 allow-hotplug eth0
 iface eth0 inet static
-    address 192.168.1.2
+    address 192.168.1.18
     netmask 255.255.255.0
     gateway 192.168.1.1
     dns-nameservers 8.8.8.8 8.8.4.4
@@ -70,16 +78,8 @@ $ ntpq -p
 *t.time.xxxx.net 104.1.306.769    2 u   38   64    7  127.126   -2.728   0.514
 +node02.jp.xxxxx 250.9.592.830    2 u    8   64   17  241.212   -4.784   1.398
 ```
-##Setup VPN client
+##Password file
 
-Install the OpenVPN client:
-```
-sudo apt-get install openvpn -y
-```
-Copy the VanishedVPN OpenVPN config file (USA by default):
-```
-wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
-```
 Create `/etc/openvpn/login` containing only your username and password (in the welcome email from VanishedVPN), one per line, for example:
 
 `nano /etc/openvpn/login`
@@ -92,8 +92,6 @@ MyVanishedVPNpassword
 Update the config file to authenticate using your new password file
 ```
 cd /etc/openvpn
-```
-```
 nano vanished.conf
 ```
 Change
@@ -105,7 +103,7 @@ to
 ```
 auth-user-pass /etc/openvpn/login
 ```
-You will also see the address of the PVN server in this config file. By default, it should be
+You will also see the address of the VPN server in this config file. By default, it should be
 ```
 usa.vanishedvpn.com
 ```
@@ -222,8 +220,8 @@ If you find traffic on your other systems stops, then look on the Pi to see if t
 
 You can check the status and logs of the VPN client with:
 ```
-sudo systemctl status openvpn@Japan
-sudo journalctl -u openvpn@Japan
+sudo systemctl status openvpn@vanished
+sudo journalctl -u openvpn@vanished
 ```
 ## Configure Other Systems on the LAN
 
@@ -231,7 +229,7 @@ Now we're ready to tell other systems to send their traffic through the Raspberr
 
 Configure other systems' network so they are like:
 
-Default Gateway: Pi's static IP address (eg: `192.168.1.2`)
+Default Gateway: Pi's static IP address (eg: `192.168.1.18`)
 DNS: Something public like Google DNS (`8.8.8.8` and `8.8.4.4`)
 Don't use your existing internet router (eg: `192.168.1.1`) as DNS, or your DNS queries will be visible to your ISP and hence may be visible to organizations who wish to see your internet traffic.
 
@@ -241,4 +239,4 @@ To ensure all your DNS goes through the VPN, you could install dnsmasq on the Pi
 `
 sudo apt-get install dnsmasq
 `
-You may now configure the other systems on the LAN to use the Pi (`192.168.1.2`) as their DNS server as well as their gateway.
+You may now configure the other systems on the LAN to use the Pi (`192.168.1.18`) as their DNS server as well as their gateway.
