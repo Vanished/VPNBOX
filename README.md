@@ -74,7 +74,7 @@ $ ntpq -p
 
 Install the OpenVPN client:
 ```
-sudo apt-get install openvpn
+sudo apt-get install openvpn -y
 ```
 Copy the VanishedVPN OpenVPN config file (USA by default):
 ```
