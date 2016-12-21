@@ -221,8 +221,15 @@ If you find traffic on your other systems stops, then look on the Pi to see if t
 
 You can check the status and logs of the VPN client with:
 ```
-sudo systemctl status openvpn@vanished
-sudo journalctl -u openvpn@vanished
+service openvpn status
+```
+If it is running you should see the following response
+```
+* VPN 'vanished' is running
+```
+To make sure that the VPN is effective, you should see a different IP address to your normal address when you execute this command
+```
+curl ifconfig.co
 ```
 ## Configure Other Systems on the LAN
 
