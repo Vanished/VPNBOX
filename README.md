@@ -78,7 +78,7 @@ sudo apt-get install openvpn -y
 ```
 Copy the VanishedVPN OpenVPN config file (USA by default):
 ```
-$ wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
 ```
 Create `/etc/openvpn/login` containing only your username and password (in the welcome email from VanishedVPN), one per line, for example:
 
@@ -93,7 +93,9 @@ Update the config file to authenticate using your new password file
 ```
 cd /etc/openvpn
 ```
-
+```
+nano vanished.conf
+```
 Change
 
 ``` 
@@ -164,7 +166,11 @@ Exit this with Ctrl+c
 ## Enable VPN at boot
 
 ```
-systemctl enable openvpn@vanished
+crontab -e
+```
+Add the following line
+```
+@reboot openvpn --config /etc/openvpn/vanished.conf
 ```
 ## Setup Routing and NAT
 
