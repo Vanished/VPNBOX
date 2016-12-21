@@ -12,8 +12,11 @@ Once configured, all you will need to do is plug the RPI into your home router, 
 You will need :
 
 1) A VanishedVPN subscrption (from www.vanishedvpn.com )
+
 2) A RPI (or similar) flashed with the latest version of Raspian
+
 3) You should have flashed the image to your SD card, and powered up the device
+
 4) Log onto the device via ssh
 
 `ssh root@rasberrypi`
