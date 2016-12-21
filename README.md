@@ -19,7 +19,9 @@ You will need :
 
 4) Log onto the device via ssh
 
-`ssh root@rasberrypi`
+`ssh pi@<ip address of your pi>`
+
+default password is `raspberry`
 
 ##IP Addressing
 
@@ -29,6 +31,8 @@ Internet Router: 192.168.1.1
 Subnet Mask: 255.255.255.0
 Router gives out DHCP range: 192.168.100-200
 If your network range is different, that's fine, use your network range instead of mine.
+
+Find a free IP address (check your router), and assign a static IP to the Pi
 
 I'm going to give my Raspberry Pi a static IP address of `192.168.1.2` by configuring `/etc/network/interfaces` like so:
 
@@ -74,13 +78,13 @@ Copy the VanishedVPN OpenVPN config file (USA by default):
 ```
 $ wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B_U-Jx4uRplbUHpQYVZ3WC0yaE0' -O /etc/openvpn/vanished.conf
 ```
-Create `/etc/openvpn/login` containing only your username and password, one per line, for example:
+Create `/etc/openvpn/login` containing only your username and password (in the welcome email from VanishedVPN), one per line, for example:
 
 `nano /etc/openvpn/login`
 
 ```
-user12345678
-MyGreatPassword
+my_email_is_my_username
+MyVanishedVPNpassword
 ```
 
 Update the config file to authenticate using your new password file
