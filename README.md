@@ -1,11 +1,22 @@
 # VPN in a BOX
-This project will enable you to configure a Raspberry Pi (or similar) to run OpenVPN on your network. 
+This project will enable you to configure a Raspberry Pi (Rpi), or similar to run OpenVPN on your network. 
 
-This solution will enable you to connect devices such as ATV, PS4, Xbox, Smart TV etc (which do not support VPN) to the RPI just by changing the DNS.
+This solution will enable you to connect devices such as ATV, PS4, Xbox, Smart TV etc (which do not support VPN) to VanishedVPN just by changing the DNS on the device to point to the Rpi (which will be running the VPN).
 
 You can run multiple RPIs on your network.
 
-Once configured, all you will need to do is plug the RPI into your home router, and change the DNS on the device that you want to stream from.
+Once configured, all you will need to do is plug the RPI into your home router, and change the DNS on the device that you want to stream from to point at the static IP of the Rpi.
+
+These instructions are based on the original 'router on a stick' developed by @superjamie https://gist.github.com/superjamie/ac55b6d2c080582a3e64
+
+## Compatability
+This solution has been tested on the following devices:
+
+Raspberry Pi3 running Raspian
+Orange Pi PC running Lubuntu 
+Orange Pi Pc running Raspian
+
+There's no reason that this solution shouldn't work on other boards  O/S which are similar, but these haven't been tested at this point. 
 
 ## Preparation
 
@@ -13,9 +24,9 @@ You will need :
 
 1) A VanishedVPN subscrption (from www.vanishedvpn.com )
 
-2) A RPI (or similar) flashed with the latest version of Raspian
+2) A RPI (or similar) flashed with the latest version of Raspian (or similar)
 
-3) You should have flashed the image to your SD card, and powered up the device
+3) You should have flashed the image to your SD card, powered up the device, and connected to your network (probably by a RJ45 network cable into your router.
 
 4) Log onto the device via ssh
 
@@ -25,7 +36,7 @@ default password is `raspberry`
 
 `sudo su -` to get into root
 
-The following will update the pi, enable a .local address, and install Apache & OpenVP. It will also download the VanishedVPN OpenVPn config and copy to `/etc/openvpn` (we'll need this later). 
+The following will update the pi,and install curl & OpenVP. It will also download the VanishedVPN OpenVPn config and copy to `/etc/openvpn` (we'll need this later). 
 
 ```
 apt-get update && apt-get upgrade -y && \
