@@ -13,8 +13,10 @@ These instructions are based on the original 'router on a stick' developed by @s
 This solution has been tested on the following devices:
 
 Raspberry Pi3 running Raspian
-Orange Pi PC running Lubuntu 
-Orange Pi Pc running Raspian
+
+Orange Pi PC running Lubuntu ($24 from here http://www.gearbest.com/boards-shields/pp_314651.html)
+
+Orange Pi Pc running Raspian 
 
 There's no reason that this solution shouldn't work on other boards  O/S which are similar, but these haven't been tested at this point. 
 
