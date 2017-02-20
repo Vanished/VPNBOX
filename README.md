@@ -123,6 +123,17 @@ usa.vanishedvpn.com
 ```
 If you want to connect to any other VPN, simply change the address to one of the other vanishedvpn servers
 
+REBOOT
+
+```
+reboot
+```
+Sign back in
+```
+ssh pi@<ip address of your pi>
+```
+`sudo su -` to get into root
+
 ##Test the VPN
 
 At this point you should be able to test the VPN actually works:
